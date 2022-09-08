@@ -37,5 +37,80 @@ let hashUserPassword = (password) => {
     });
 };
 
+let getAllUsers = () => {
+    return new Promise(async (res, rej) => {
+        try {
+            let users = db.User.findAll({
+                raw: true,
+            });
+            res(users);
+        } catch (e) {
+            rej(e);
+        }
+    });
+};
+
+let getUserInforById = (userId) => {
+    return new Promise(async (res, rej) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: userId },
+                raw: true,
+            });
+            if (user) {
+                res(user);
+            } else {
+                res([]);
+            }
+        } catch (e) {
+            rej(e);
+        }
+    });
+};
 //
-module.exports = { createNewUsers: createNewUsers };
+
+let updateUserData = (data) => {
+    return new Promise(async (res, rej) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: data.id },
+            });
+            if (user) {
+                user.firstName = data.firstName;
+                user.lastName = data.lastName;
+                user.address = data.address;
+
+                await user.save();
+                res();
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    });
+};
+//
+
+let deleteUserById = (userId) => {
+    return new Promise(async (res, rej) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: userId },
+            });
+            if (user) {
+                await user.destroy();
+            }
+            res();
+        } catch (e) {
+            rej(e);
+        }
+    });
+};
+
+//
+module.exports = {
+    createNewUsers: createNewUsers,
+    getAllUsers: getAllUsers,
+    getUserInforById: getUserInforById,
+    updateUserData: updateUserData,
+    deleteUserById: deleteUserById,
+};
