@@ -2,10 +2,6 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('allcodes', {
-            // key: DataTypes.STRING,
-            // type: DataTypes.STRING,
-            // value_en: DataTypes.STRING,
-            // value_vi: DataTypes.STRING,
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -13,7 +9,7 @@ module.exports = {
                 type: Sequelize.INTEGER,
             },
 
-            key: {
+            keyMap: {
                 type: Sequelize.STRING,
             },
             type: {

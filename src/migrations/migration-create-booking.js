@@ -2,11 +2,6 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('bookings', {
-            // statusId: DataTypes.STRING,
-            // doctorId: DataTypes.INTEGER,
-            // patientId: DataTypes.INTEGER,
-            // date: DataTypes.DATE,
-            // timetype: DataTypes.STRING,
             id: {
                 allowNull: false,
                 autoIncrement: true,
