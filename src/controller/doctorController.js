@@ -12,11 +12,39 @@ let getTopDoctorHome = async (req, res) => {
         console.log(e);
         return res.status(200).json({
             errCode: -1,
-            Message: 'error form server...',
+            Message: 'get all doctor fail error form server...',
+        });
+    }
+};
+
+let getAllDoctors = async (req, res) => {
+    try {
+        let doctors = await doctorService.getAllDoctors();
+        return res.status(200).json(doctors);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            Message: 'get all doctor fail error form server...',
+        });
+    }
+};
+
+let postInforDoctor = async (req, res) => {
+    try {
+        let response = await doctorService.saveDataInforDoctor(req.body);
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: 1,
+            Message: 'post infor doctor error',
         });
     }
 };
 
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
+    getAllDoctors: getAllDoctors,
+    postInforDoctor: postInforDoctor,
 };
