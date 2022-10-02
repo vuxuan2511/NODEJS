@@ -14,7 +14,6 @@ let hashUserPassword = (password) => {
         }
     });
 };
-//
 
 let handleUserLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
@@ -56,8 +55,6 @@ let handleUserLogin = (email, password) => {
     });
 };
 
-//
-
 let checkUserEmail = (userEmail) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -74,8 +71,6 @@ let checkUserEmail = (userEmail) => {
         }
     });
 };
-
-//
 
 let getAllUsers = (userId) => {
     return new Promise(async (resolve, reject) => {
@@ -102,8 +97,6 @@ let getAllUsers = (userId) => {
         }
     });
 };
-
-//
 
 let createNewUser = (data) => {
     return new Promise(async (resolve, reject) => {
@@ -140,7 +133,6 @@ let createNewUser = (data) => {
     });
 };
 
-//
 let deleteUser = (userId) => {
     return new Promise(async (resolve, reject) => {
         let user = await db.User.findOne({
