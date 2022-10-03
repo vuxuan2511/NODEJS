@@ -1,4 +1,5 @@
 import db from '../models/index';
+import EmailService from './EmailService';
 
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
@@ -9,6 +10,13 @@ let postBookAppointment = (data) => {
                     errMessage: 'missing parameter',
                 });
             } else {
+                await EmailService.sendSimpleEmail({
+                    reciverEmail: data.email,
+                    patientName: 'Vu xuan',
+                    time: '8:00 - 9:00 Chủ nhật 3/10/2022',
+                    doctorName: 'Vuxuan',
+                    redirectLink: 'https://www.youtube.com/watch?v=nkgTyPGQK4w',
+                });
                 let user = await db.User.findOrCreate({
                     where: {
                         email: data.email,
